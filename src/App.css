@@ -24,6 +24,7 @@
   align-items: center;
   padding: 10px 0;
   border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 #drum-keys{
@@ -47,17 +48,32 @@
   font-weight: bold;
   border-radius: 20px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  outline: none;
 }
 
 .drumpad button:hover{
   opacity: .9;
 }
 
-.drumpad button:active{
-  background-color: #a0d2eb;
+.drumpad button:active, .active{
+  background-color: #a0d2eb !important;
 }
 
 #audio{
   display: none;
 }
 
+footer{
+  position: fixed;
+  bottom: 0;
+  margin: 20px 0;
+  width: 100%;
+  color: white;
+  text-align: center;
+}
+
+footer a{
+  color: white;
+  text-decoration: none;
+  border-bottom: 1px solid white;
+}

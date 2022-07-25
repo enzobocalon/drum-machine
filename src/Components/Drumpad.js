@@ -1,8 +1,18 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../App.css'
 
 const Drumpad = (props) => {
+    const [isActive, setIsActive] = useState(false)
 
+    const getEffect = () => {
+        setIsActive(true);
+
+        setInterval(() => {
+            setIsActive(false);
+        }, 200)
+
+    }
+    
     const playAudio = (audioKeyCode) => {
         const audio = document.querySelector(`audio[data-key="${audioKeyCode}"]`)
         audio.currentTime = 0;
@@ -14,18 +24,22 @@ const Drumpad = (props) => {
         const eventString = e.keyCode.toString(10)
         if (props.dataKey === eventString) {
             playAudio(props.dataKey)
+            getEffect();
         }
     }   
 
     useEffect(() => {
         document.addEventListener('keydown', getKey);
-        return () => {document.removeEventListener('keydown', getKey)}
+        return () => {
+            document.removeEventListener('keydown', getKey)
+            
+    }
     }, [])
 
   return (
     <>
     <div className='drumpad'>
-        <button onClick={() => playAudio(props.dataKey)}>{props.name}</button>
+        <button onClick={() => playAudio(props.dataKey)} className={isActive ? 'active' : null}>{props.name}</button>
     </div>
 
     <section id="audio">
